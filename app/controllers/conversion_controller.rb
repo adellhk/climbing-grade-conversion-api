@@ -1,7 +1,7 @@
 class ConversionController < ApplicationController
 
 	def convert
-		# convert(params[:input_grade])
-		p Conversion.new.convert('5.10a')
+		render json: Conversion.new.convert(params[:input_grade])
 	end
+	
 end
