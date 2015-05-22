@@ -178,7 +178,16 @@ class Conversion < ActiveRecord::Base
 	end
 
 	def convert(input_grade)
-		@translations[standardize_input(input_grade)]
+		all_translations = @translations[standardize_input(input_grade)]
+		paired_translations = {}
+		all_translations.each do |translation|
+			paired_translations['french'] = translation if standardize_french.has_key?(translation)
+			paired_translations['uk'] = translation if standardize_uk.has_key?(translation)
+			paired_translations['australian'] = translation if standardize_australian.has_key?(translation)
+			paired_translations['uiaa'] = translation if standardize_uiaa.has_key?(translation)
+			paired_translations['yds'] = translation if standardize_yds.has_key?(translation)
+		end
+		paired_translations
 	end
 
 	def standardize_input(input_grade)
