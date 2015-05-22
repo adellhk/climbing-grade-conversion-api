@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  match 'convert' => 'conversion#convert', via: [:post, :options]
+  get 'hi' => 'conversion#greet'
+  match '*unmatched' => 'conversion#cors_preflight_check', via: [:options]
   # controller :conversion, path: '/convert' do
   #   match 'post_action', via: [:post, :options]
   # end
-  get 'hi' => 'conversion#greet'
   # match "*all" => "application#cors_preflight_check", via: :options
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
