@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
   get 'hi' => 'conversion#greet'
-  match '*unmatched' => 'conversion#cors_preflight_check', via: [:options]
-  # controller :conversion, path: '/convert' do
-  #   match 'post_action', via: [:post, :options]
+
+  match '*path' => 'application#cors_preflight_check', via: [:post, :options]
+
+  # controller :conversion do
+  #   match '/convert', :to => 'conversion#cors_preflight_check', via: [:post, :options]
   # end
   # match "*all" => "application#cors_preflight_check", via: :options
   # The priority is based upon order of creation: first created -> highest priority.
